@@ -1,0 +1,60 @@
+﻿@model MVCDayCountTest.Models.NumberOfDays
+@{
+    ViewBag.Title = "Index";
+}
+
+<!-- Here is all the theming for this package, I wasn’t sure if you wanted me to go as far as creating a master page
+     set and an entire theme so I just stopped here.  I understand that this test is to demonstrate that I am competent 
+     with the framework, so I would be happy to continue on and show a full theme if that you feel that is necessary.  -->
+<link rel="stylesheet" href="~/Styles/DayCounterStyles.css">
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
+
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+<script>
+    $(function () {
+        $(".text-box").datepicker({ dateFormat: 'm/dd/yy' });
+    });
+</script>
+
+
+
+<div class="DayCounter">
+
+@using (Html.BeginForm()) { 
+    @Html.ValidationSummary(true)
+    
+    <img src="~/Images/dayscounter-image.png" class="top"/>
+    <p>This product will count the days between the Start Date and the End Date and return the number of days in between.</p>
+    <table>
+        <tr>
+            <td>@Html.LabelFor(model => model.StartDate)</td>
+            <td style="width:40px;"></td>
+            <td>@Html.LabelFor(model => model.EndDate)</td>
+        </tr>
+        
+        <tr>
+            <td>@Html.EditorFor(model => model.StartDate)</td>
+            <td></td>
+            <td>@Html.EditorFor(model => model.EndDate)</td>
+        </tr>
+        
+        <tr>
+            <td><p>@Html.ValidationMessageFor(model => model.StartDate)</p></td>
+            <td></td>
+            <td><p>@Html.ValidationMessageFor(model => model.EndDate)</p></td>
+        </tr>        
+        
+        <tr>
+            <td><input type="submit" name="Submit" id="Submit" value="Submit" /></td>
+            <td colspan="2"><span>The days counted are : @Html.DisplayFor(model => Model.FinalCount) </span></td>
+            <td></td>
+        </tr>
+
+    </table>
+}
+    </div>
+
+
